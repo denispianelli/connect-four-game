@@ -20,8 +20,10 @@ const GameBoard = ({ gameBoardProps }: { gameBoardProps: any }) => {
     timeLeft,
     resetCountdown,
     resetGame,
+    isDraw,
   } = gameBoardProps;
 
+  console.log('isDraw', isDraw);
   const audioRef = useRef(null);
 
   const playerMove = usePlayerMove({
@@ -36,17 +38,17 @@ const GameBoard = ({ gameBoardProps }: { gameBoardProps: any }) => {
   });
 
   const { renderRow } = useRenderBoard(board, playerMove);
-  // const resetGame = useResetGame({ resetBoard, setWinner });
 
   return (
-    <div className="relative w-[335px] min-h-[310px] mx-auto">
+    <div className="relative w-[335px] min-h-[310px] md:w-[632px] md:min-h-[584px] mx-auto">
       {board.map((row: string[], rowIndex: number) => renderRow(row, rowIndex))}
       <GameBoardBackImage />
       <GameBoardFrontImage />
       {!winner && (
         <GameTurnIndicator currentPlayer={currentPlayer} timeLeft={timeLeft} />
       )}
-      {winner && <GameWinnerCard winner={winner} resetGame={resetGame} />}
+      {winner !== 0 && <GameWinnerCard winner={winner} resetGame={resetGame} />}
+      {isDraw && <GameWinnerCard winner={0} resetGame={resetGame} />}
       <audio ref={audioRef} src="/sounds/sliding.mp3" preload="auto" />
     </div>
   );

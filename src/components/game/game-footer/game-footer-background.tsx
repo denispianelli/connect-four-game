@@ -7,7 +7,7 @@ interface FooterBackgroundProps {
 const GameFooterBackground: React.FC<FooterBackgroundProps> = ({ winner }) => {
   return (
     <div
-      className={clsx(`-z-50 w-screen h-screen rounded-[60px]`, {
+      className={clsx(`-z-50 w-full h-full rounded-t-[60px] md:-my-10`, {
         'bg-primary': winner === 0,
         'bg-colorRed': winner === 1,
         'bg-colorYellow': winner === 2,

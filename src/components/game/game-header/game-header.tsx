@@ -8,14 +8,11 @@ export default function GameHeader({
   restartGame: () => void;
 }) {
   return (
-    <header className="w-[335px] h-[40px] flex justify-between mx-auto mb-[50px]">
+    <header className="w-[335px] h-[40px] md:w-[632px] md:h-[52px] flex justify-between items-center mx-auto mb-[50px] md:mb-[32px] xl:mb-[51px]">
       <MenuButton restartGame={restartGame} />
-      <Image
-        src={'/assets/images/logo.svg'}
-        alt="Logo"
-        width={40}
-        height={40}
-      />
+      <div className="w-[40px] h-[40px] md:h-[52px] md:w-[52px] relative">
+        <Image src={'/assets/images/logo.svg'} alt="Logo" fill />
+      </div>
       <Button onClick={restartGame} variant={'secondary'}>
         Restart
       </Button>

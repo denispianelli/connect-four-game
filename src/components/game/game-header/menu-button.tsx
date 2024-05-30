@@ -24,7 +24,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ restartGame }) => {
       <AlertDialogTrigger asChild>
         <Button variant={'secondary'}>Menu</Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="w-[335px] h-[437px]">
+      <AlertDialogContent className="w-[335px] h-[437px] md:w-[480px] md:h-[491px]">
         <AlertDialogHeader>
           <AlertDialogTitle>Pause</AlertDialogTitle>
         </AlertDialogHeader>

@@ -12,7 +12,7 @@ const GameTurnIndicator: React.FC<GameTurnIndicatorProps> = ({
   timeLeft,
 }) => {
   return (
-    <div className="absolute flex flex-col items-center justify-center bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[90%] w-[191px] h-[150px]">
+    <div className="absolute flex flex-col items-center justify-center md:bottom-5 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[90%] w-[191px] h-[150px]">
       <Image
         src={`/assets/images/turn-background-${
           currentPlayer === 1 ? 'red' : 'yellow'

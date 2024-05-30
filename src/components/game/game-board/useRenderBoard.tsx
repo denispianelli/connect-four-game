@@ -21,7 +21,10 @@ const useRenderBoard = (
 
   const renderRow = (row: (string | null)[], rowIndex: number): JSX.Element => {
     return (
-      <div key={rowIndex} className="h-[39px] m-2 flex gap-2 z-50">
+      <div
+        key={rowIndex}
+        className="h-[39px] md:gap-6 md:h-[67px] m-2 md:my-[21px] md:mx-[18px] flex gap-2 z-50"
+      >
         {row.map((_, colIndex) => renderCell(rowIndex, colIndex))}
       </div>
     );
