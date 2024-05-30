@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { GameBoard } from './game-board/game-board';
 import { useGameBoard } from './game-board/useGameBoard';
 import { useResetGame } from './game-board/useResetGame';
@@ -53,10 +54,14 @@ const Game: React.FC = () => {
     resetScores,
   });
 
+  useEffect(() => {
+    if (isDraw) resetCountdown();
+  });
+
   return (
     <>
       <GameHeader restartGame={restartGame} />
-      <div className="xl:grid grid-cols-[auto,752px,auto] items-center">
+      <div className="grid xl:grid xl:grid-cols-[auto,752px,auto] items-center">
         <GameScores
           playerOneScore={playerOneScore}
           playerTwoScore={playerTwoScore}

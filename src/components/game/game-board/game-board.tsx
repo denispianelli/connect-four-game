@@ -3,11 +3,11 @@
 import { useRef } from 'react';
 import { usePlayerMove } from './usePlayerMove';
 import { useRenderBoard } from './useRenderBoard';
-import { useResetGame } from './useResetGame';
 import { GameTurnIndicator } from '../game-turn-indicator/game-turn-indicator';
 import { GameWinnerCard } from '../game-winner/game-winner-card';
 import { GameBoardBackImage } from './game-board-back-image';
 import { GameBoardFrontImage } from './game-board-front-image';
+import { GameDrawCard } from '../game-winner/game-draw-card';
 
 const GameBoard = ({ gameBoardProps }: { gameBoardProps: any }) => {
   const {
@@ -23,7 +23,6 @@ const GameBoard = ({ gameBoardProps }: { gameBoardProps: any }) => {
     isDraw,
   } = gameBoardProps;
 
-  console.log('isDraw', isDraw);
   const audioRef = useRef(null);
 
   const playerMove = usePlayerMove({
@@ -35,6 +34,7 @@ const GameBoard = ({ gameBoardProps }: { gameBoardProps: any }) => {
     winner,
     resetCountdown,
     audioRef,
+    isDraw,
   });
 
   const { renderRow } = useRenderBoard(board, playerMove);
@@ -48,7 +48,7 @@ const GameBoard = ({ gameBoardProps }: { gameBoardProps: any }) => {
         <GameTurnIndicator currentPlayer={currentPlayer} timeLeft={timeLeft} />
       )}
       {winner !== 0 && <GameWinnerCard winner={winner} resetGame={resetGame} />}
-      {isDraw && <GameWinnerCard winner={0} resetGame={resetGame} />}
+      {isDraw && <GameDrawCard resetGame={resetGame} />}
       <audio ref={audioRef} src="/sounds/sliding.mp3" preload="auto" />
     </div>
   );

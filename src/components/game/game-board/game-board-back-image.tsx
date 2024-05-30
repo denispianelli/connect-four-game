@@ -23,7 +23,7 @@ const GameBoardBackImage = () => {
         alt="board"
         width={632}
         height={584}
-        className="-z-30 absolute top-0 left-1/2 transform -translate-x-1/2 hidden"
+        className="-z-30 absolute top-0 left-1/2 transform -translate-x-1/2"
       />
     );
   }

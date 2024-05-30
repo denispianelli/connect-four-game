@@ -10,6 +10,7 @@ const usePlayerMove = ({
   winner,
   resetCountdown,
   audioRef,
+  isDraw,
 }: {
   board: number[][];
   setBoard: React.Dispatch<React.SetStateAction<number[][]>>;
@@ -19,17 +20,18 @@ const usePlayerMove = ({
   winner: number | null;
   resetCountdown: () => void;
   audioRef: React.RefObject<HTMLAudioElement>;
+  isDraw: boolean;
 }) => {
   const checkWinner = useCheckWinner();
 
   const handleClick = useCallback(
     (col: number): void => {
-      if (winner) return;
+      if (winner || isDraw) return;
 
-      resetCountdown();
       const newBoard: number[][] = board.map((row: number[]) => row.slice());
 
       for (let row = 5; row >= 0; row--) {
+        if (newBoard[0][col] !== null) return;
         if (newBoard[row][col] === null) {
           newBoard[row][col] = currentPlayer;
           if (checkWinner(newBoard, row, col, currentPlayer)) {
@@ -38,6 +40,7 @@ const usePlayerMove = ({
           break;
         }
       }
+      resetCountdown();
 
       setTimeout(() => {
         if (audioRef.current) {
@@ -59,6 +62,7 @@ const usePlayerMove = ({
       setCurrentPlayer,
       setWinner,
       audioRef,
+      isDraw,
     ]
   );
 
